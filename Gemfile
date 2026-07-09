@@ -33,7 +33,7 @@ gem "bootsnap", require: false
 
 # Avoid rdoc 8 pulling in rbs native extensions on Windows.
 gem "rdoc", "7.2.0"
-gem "minitest", "< 6"
+gem "minitest", "< 7"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
