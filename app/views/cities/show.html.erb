@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @city.name %> Weather</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <main class="dashboard">
+      <section class="dashboard__header">
+        <div>
+          <p class="eyebrow"><%= @city.country %></p>
+          <h1><%= @city.name %></h1>
+          <p class="lede">
+            Daily weather records imported for <%= @city.name %>, including temperature,
+            precipitation, wind, and weather code data.
+          </p>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="City weather summary">
+        <article class="metric-card">
+          <span class="metric-card__label">Records</span>
+          <strong><%= @record_count %></strong>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Latest Date</span>
+          <strong><%= @latest_recorded_on || "No data" %></strong>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Timezone</span>
+          <strong class="metric-card__compact"><%= @city.timezone %></strong>
+        </article>
+      </section>
+
+      <section class="content-panel">
+        <div class="section-heading">
+          <h2>City Details</h2>
+          <p>Location metadata used by the Open-Meteo historical weather import.</p>
+        </div>
+
+        <dl class="detail-list">
+          <div>
+            <dt>Country</dt>
+            <dd><%= @city.country %></dd>
+          </div>
+          <div>
+            <dt>Latitude</dt>
+            <dd><%= number_with_precision(@city.latitude, precision: 4) %></dd>
+          </div>
+          <div>
+            <dt>Longitude</dt>
+            <dd><%= number_with_precision(@city.longitude, precision: 4) %></dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>
