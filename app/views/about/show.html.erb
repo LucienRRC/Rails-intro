@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About City Weather Explorer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <main class="dashboard">
+      <section class="dashboard__header">
+        <div>
+          <p class="eyebrow">Project Dataset</p>
+          <h1>About City Weather Explorer</h1>
+          <p class="lede">
+            This Rails application uses imported weather data to compare daily conditions
+            across cities and show how each city connects to its historical records.
+          </p>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="Dataset summary">
+        <article class="metric-card">
+          <span class="metric-card__label">Cities</span>
+          <strong><%= @city_count %></strong>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Weather Records</span>
+          <strong><%= @weather_record_count %></strong>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Date Range</span>
+          <% if @earliest_recorded_on && @latest_recorded_on %>
+            <strong class="metric-card__compact"><%= @earliest_recorded_on %> to <%= @latest_recorded_on %></strong>
+          <% else %>
+            <strong>No data</strong>
+          <% end %>
+        </article>
+      </section>
+
+      <section class="about-grid">
+        <article class="content-panel">
+          <div class="section-heading">
+            <h2>Dataset</h2>
+          </div>
+          <p>
+            The project stores city records and daily weather observations. Each weather record
+            includes a date, high temperature, low temperature, mean temperature, precipitation,
+            maximum wind speed, and a weather condition code.
+          </p>
+        </article>
+
+        <article class="content-panel">
+          <div class="section-heading">
+            <h2>Data Source</h2>
+          </div>
+          <p>
+            Weather observations come from the Open-Meteo Historical Weather API, a public
+            non-Faker data source. The importer requests daily weather values for selected city
+            coordinates and saves the response in the Rails database.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
