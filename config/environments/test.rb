@@ -24,6 +24,9 @@ Rails.application.configure do
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
+  config.assets.configure do |env|
+    env.cache = Sprockets::Cache::NullStore.new
+  end
 
   # Render exception templates for rescuable exceptions and raise for other exceptions.
   config.action_dispatch.show_exceptions = :rescuable

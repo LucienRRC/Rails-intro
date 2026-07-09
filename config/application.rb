@@ -1,7 +1,16 @@
 require_relative "boot"
 
+require "active_model"
+require "active_model/callbacks"
 require "active_model/validator"
 require "active_model/validations/helper_methods"
+require "active_model/validations/absence"
+require "active_model/validations/callbacks"
+require "active_model/validations/length"
+require "active_model/validations/numericality"
+require "active_model/validations/presence"
+require "active_model/validations/validates"
+require "active_model/validations/with"
 require "active_model/validations"
 require "rails/all"
 

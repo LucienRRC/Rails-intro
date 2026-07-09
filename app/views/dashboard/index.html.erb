@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>City Weather Explorer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <main class="dashboard">
+      <section class="dashboard__header">
+        <div>
+          <p class="eyebrow">Open-Meteo Historical Weather</p>
+          <h1>City Weather Explorer</h1>
+          <p class="lede">
+            Browse imported historical weather records by city, country, and daily weather measurements.
+          </p>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="Weather data summary">
+        <article class="metric-card">
+          <span class="metric-card__label">Cities</span>
+          <strong><%= @city_count %></strong>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Weather Records</span>
+          <strong><%= @weather_record_count %></strong>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Latest Date</span>
+          <strong><%= @latest_recorded_on || "No data" %></strong>
+        </article>
+      </section>
+
+      <section class="content-panel">
+        <div class="section-heading">
+          <h2>Imported Cities</h2>
+          <p>Each city links to daily temperature, precipitation, wind, and weather code data in the database.</p>
+        </div>
+
+        <div class="city-table-wrap">
+          <table class="city-table">
+            <thead>
+              <tr>
+                <th>City</th>
+                <th>Country</th>
+                <th>Timezone</th>
+                <th>Records</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cities.each do |city| %>
+                <tr>
+                  <td><%= city.name %></td>
+                  <td><%= city.country %></td>
+                  <td><%= city.timezone %></td>
+                  <td><%= city.weather_records.size %></td>
+                  <td><%= number_with_precision(city.latitude, precision: 4) %></td>
+                  <td><%= number_with_precision(city.longitude, precision: 4) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
