@@ -32,7 +32,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Avoid rdoc 8 pulling in rbs native extensions on Windows.
-gem "rdoc", "7.2.0"
+gem "rdoc", "8.0.0"
 gem "minitest", "< 6"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
