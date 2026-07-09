@@ -191,8 +191,8 @@ h1 {
 
 .erd-diagram {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr) 120px minmax(0, 1fr);
+  gap: 16px;
   align-items: center;
 }
 
