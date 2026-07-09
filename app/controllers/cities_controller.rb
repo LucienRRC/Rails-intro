@@ -7,6 +7,7 @@ class CitiesController < ApplicationController
     @current_page = [params[:page].to_i, 1].max
     @total_pages = (@record_count.to_f / @records_per_page).ceil
     @weather_records = @city.weather_records
+                            .includes(:weather_code_detail)
                             .order(recorded_on: :desc)
                             .limit(@records_per_page)
                             .offset((@current_page - 1) * @records_per_page)

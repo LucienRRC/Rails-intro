@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_07_09_013827) do
+ActiveRecord::Schema[7.2].define(version: 2026_07_09_030000) do
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.string "country", null: false
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.2].define(version: 2026_07_09_013827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "country"], name: "index_cities_on_name_and_country", unique: true
+  end
+
+  create_table "weather_codes", force: :cascade do |t|
+    t.integer "code", null: false
+    t.string "description", null: false
+    t.string "category", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_weather_codes_on_code", unique: true
   end
 
   create_table "weather_records", force: :cascade do |t|

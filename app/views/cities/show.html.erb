@@ -106,7 +106,14 @@
                     <td><%= number_with_precision(record.temperature_mean, precision: 1) %> C</td>
                     <td><%= number_with_precision(record.precipitation_sum, precision: 1) %> mm</td>
                     <td><%= number_with_precision(record.wind_speed_max, precision: 1) %> km/h</td>
-                    <td><%= record.weather_code || "N/A" %></td>
+                    <td>
+                      <% if record.weather_code_detail %>
+                        <%= record.weather_code_detail.description %>
+                        <span class="muted-code">(<%= record.weather_code %>)</span>
+                      <% else %>
+                        <%= record.weather_code || "N/A" %>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>

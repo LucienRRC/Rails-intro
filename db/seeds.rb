@@ -1,3 +1,33 @@
+weather_codes = [
+  { code: 0, description: "Clear sky", category: "Clear" },
+  { code: 1, description: "Mainly clear", category: "Clouds" },
+  { code: 2, description: "Partly cloudy", category: "Clouds" },
+  { code: 3, description: "Overcast", category: "Clouds" },
+  { code: 45, description: "Fog", category: "Visibility" },
+  { code: 48, description: "Depositing rime fog", category: "Visibility" },
+  { code: 51, description: "Light drizzle", category: "Drizzle" },
+  { code: 53, description: "Moderate drizzle", category: "Drizzle" },
+  { code: 55, description: "Dense drizzle", category: "Drizzle" },
+  { code: 61, description: "Slight rain", category: "Rain" },
+  { code: 63, description: "Moderate rain", category: "Rain" },
+  { code: 65, description: "Heavy rain", category: "Rain" },
+  { code: 71, description: "Slight snow fall", category: "Snow" },
+  { code: 73, description: "Moderate snow fall", category: "Snow" },
+  { code: 75, description: "Heavy snow fall", category: "Snow" },
+  { code: 80, description: "Slight rain showers", category: "Showers" },
+  { code: 81, description: "Moderate rain showers", category: "Showers" },
+  { code: 82, description: "Violent rain showers", category: "Showers" },
+  { code: 95, description: "Thunderstorm", category: "Storm" },
+  { code: 96, description: "Thunderstorm with slight hail", category: "Storm" },
+  { code: 99, description: "Thunderstorm with heavy hail", category: "Storm" }
+]
+
+weather_codes.each do |attributes|
+  WeatherCode.find_or_initialize_by(code: attributes[:code]).tap do |weather_code|
+    weather_code.update!(attributes)
+  end
+end
+
 cities = [
   { name: "Winnipeg", country: "Canada", latitude: 49.8951, longitude: -97.1384, timezone: "America/Winnipeg" },
   { name: "Toronto", country: "Canada", latitude: 43.6532, longitude: -79.3832, timezone: "America/Toronto" },
@@ -20,7 +50,8 @@ cities.each do |attributes|
   end
 
   city.update!(attributes)
-  OpenMeteoImporter.new(city, start_date: start_date, end_date: end_date).import!
+  OpenMeteoImporter.new(city, start_date: start_date, end_date: end_date).import! unless city.weather_records.exists?
 end
 
 puts "Imported #{City.count} cities and #{WeatherRecord.count} weather records."
+puts "Imported #{WeatherCode.count} weather codes."
