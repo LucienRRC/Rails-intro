@@ -57,6 +57,42 @@
           </div>
         </dl>
       </section>
+
+      <section class="content-panel weather-records-panel">
+        <div class="section-heading">
+          <h2>Daily Weather Records</h2>
+          <p>Records are sorted newest first so recent imported weather is easiest to scan.</p>
+        </div>
+
+        <div class="city-table-wrap">
+          <table class="city-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>High</th>
+                <th>Low</th>
+                <th>Mean</th>
+                <th>Precipitation</th>
+                <th>Wind</th>
+                <th>Code</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @weather_records.each do |record| %>
+                <tr>
+                  <td><%= record.recorded_on %></td>
+                  <td><%= number_with_precision(record.temperature_max, precision: 1) %> C</td>
+                  <td><%= number_with_precision(record.temperature_min, precision: 1) %> C</td>
+                  <td><%= number_with_precision(record.temperature_mean, precision: 1) %> C</td>
+                  <td><%= number_with_precision(record.precipitation_sum, precision: 1) %> mm</td>
+                  <td><%= number_with_precision(record.wind_speed_max, precision: 1) %> km/h</td>
+                  <td><%= record.weather_code || "N/A" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
   </body>
 </html>

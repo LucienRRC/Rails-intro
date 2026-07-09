@@ -120,6 +120,10 @@ h1 {
   padding: 24px;
 }
 
+.weather-records-panel {
+  margin-top: 24px;
+}
+
 .section-heading {
   display: flex;
   align-items: flex-start;
