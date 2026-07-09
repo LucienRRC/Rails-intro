@@ -313,6 +313,37 @@ h1 {
   color: var(--muted);
 }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.pagination__link,
+.pagination__disabled,
+.pagination__status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.pagination__link {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.pagination__disabled,
+.pagination__status {
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
 .city-table-wrap {
   overflow-x: auto;
 }
@@ -406,6 +437,17 @@ h1 {
   .search-form__button,
   .search-form__clear {
     width: 100%;
+    justify-content: center;
+  }
+
+  .pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .pagination__link,
+  .pagination__disabled,
+  .pagination__status {
     justify-content: center;
   }
 
