@@ -160,6 +160,17 @@ h1 {
   margin-top: 24px;
 }
 
+.map-panel {
+  margin-top: 24px;
+}
+
+.location-map {
+  width: 100%;
+  min-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

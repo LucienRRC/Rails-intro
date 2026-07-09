@@ -59,6 +59,24 @@
         </dl>
       </section>
 
+      <section class="content-panel map-panel">
+        <div class="section-heading">
+          <h2>Location Map</h2>
+          <p>Map location is based on the latitude and longitude stored for this city.</p>
+        </div>
+
+        <% latitude = @city.latitude.to_f %>
+        <% longitude = @city.longitude.to_f %>
+        <% map_box = [longitude - 0.25, latitude - 0.25, longitude + 0.25, latitude + 0.25].join(",") %>
+
+        <iframe
+          class="location-map"
+          title="Map of <%= @city.name %>"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=<%= map_box %>&layer=mapnik&marker=<%= latitude %>,<%= longitude %>"
+          loading="lazy">
+        </iframe>
+      </section>
+
       <section class="content-panel weather-records-panel">
         <div class="section-heading">
           <h2>Daily Weather Records</h2>
