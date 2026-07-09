@@ -17,6 +17,10 @@
             across cities and show how each city connects to its historical records.
           </p>
         </div>
+        <nav class="page-tabs" aria-label="Primary navigation">
+          <%= link_to "Dashboard", root_path, class: "page-tab" %>
+          <%= link_to "About", about_path, class: "page-tab page-tab--active" %>
+        </nav>
       </section>
 
       <section class="metric-grid" aria-label="Dataset summary">
@@ -62,6 +66,48 @@
             coordinates and saves the response in the Rails database.
           </p>
         </article>
+      </section>
+
+      <section class="content-panel erd-panel">
+        <div class="section-heading">
+          <h2>Database ERD</h2>
+          <p>City records have a one-to-many relationship with daily weather records.</p>
+        </div>
+
+        <div class="erd-diagram" aria-label="Database entity relationship diagram">
+          <article class="erd-entity">
+            <h3>cities</h3>
+            <ul>
+              <li><strong>id</strong> primary key</li>
+              <li>name</li>
+              <li>country</li>
+              <li>latitude</li>
+              <li>longitude</li>
+              <li>timezone</li>
+            </ul>
+          </article>
+
+          <div class="erd-relation" aria-label="one city has many weather records">
+            <span>1</span>
+            <strong>has many</strong>
+            <span>*</span>
+          </div>
+
+          <article class="erd-entity">
+            <h3>weather_records</h3>
+            <ul>
+              <li><strong>id</strong> primary key</li>
+              <li><strong>city_id</strong> foreign key</li>
+              <li>recorded_on</li>
+              <li>temperature_max</li>
+              <li>temperature_min</li>
+              <li>temperature_mean</li>
+              <li>precipitation_sum</li>
+              <li>wind_speed_max</li>
+              <li>weather_code</li>
+            </ul>
+          </article>
+        </div>
       </section>
     </main>
   </body>

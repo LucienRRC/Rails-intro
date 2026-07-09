@@ -13,6 +13,10 @@
           <h1>City Weather Explorer</h1>
 
         </div>
+        <nav class="page-tabs" aria-label="Primary navigation">
+          <%= link_to "Dashboard", root_path, class: "page-tab page-tab--active" %>
+          <%= link_to "About", about_path, class: "page-tab" %>
+        </nav>
       </section>
 
       <section class="metric-grid" aria-label="Weather data summary">
