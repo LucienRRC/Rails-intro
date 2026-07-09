@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   get "about" => "about#show", as: :about
+  get "countries" => "countries#index", as: :countries
+  get "countries/:country" => "countries#show", as: :country
 
   resources :cities, only: :show
 

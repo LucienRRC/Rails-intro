@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countries</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <main class="dashboard">
+      <section class="dashboard__header">
+        <div>
+          <p class="eyebrow">Hierarchical Navigation</p>
+          <h1>Countries</h1>
+          <p class="lede">Browse weather data by country, then drill down into cities and daily records.</p>
+        </div>
+        <nav class="page-tabs" aria-label="Primary navigation">
+          <%= link_to "Dashboard", root_path, class: "page-tab" %>
+          <%= link_to "Countries", countries_path, class: "page-tab page-tab--active" %>
+          <%= link_to "About", about_path, class: "page-tab" %>
+        </nav>
+      </section>
+
+      <section class="content-panel">
+        <div class="city-table-wrap">
+          <table class="city-table">
+            <thead>
+              <tr>
+                <th>Country</th>
+                <th>Cities</th>
+                <th>Weather Records</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @countries.each do |country| %>
+                <tr>
+                  <td><%= link_to country.country, country_path(country.country), class: "table-link" %></td>
+                  <td><%= country.cities_count %></td>
+                  <td><%= country.weather_records_count %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

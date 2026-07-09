@@ -85,6 +85,16 @@ body {
   text-transform: uppercase;
 }
 
+.eyebrow-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eyebrow-link:hover,
+.eyebrow-link:focus {
+  text-decoration: underline;
+}
+
 h1,
 h2,
 p {

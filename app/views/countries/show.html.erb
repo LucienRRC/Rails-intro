@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @country %> Cities</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <main class="dashboard">
+      <section class="dashboard__header">
+        <div>
+          <p class="eyebrow"><%= link_to "Countries", countries_path, class: "eyebrow-link" %></p>
+          <h1><%= @country %></h1>
+          <p class="lede">Cities in <%= @country %> with imported historical weather records.</p>
+        </div>
+        <nav class="page-tabs" aria-label="Primary navigation">
+          <%= link_to "Dashboard", root_path, class: "page-tab" %>
+          <%= link_to "Countries", countries_path, class: "page-tab page-tab--active" %>
+          <%= link_to "About", about_path, class: "page-tab" %>
+        </nav>
+      </section>
+
+      <section class="content-panel">
+        <% if @cities.any? %>
+          <div class="city-table-wrap">
+            <table class="city-table">
+              <thead>
+                <tr>
+                  <th>City</th>
+                  <th>Timezone</th>
+                  <th>Records</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @cities.each do |city| %>
+                  <tr>
+                    <td><%= link_to city.name, city_path(city), class: "table-link" %></td>
+                    <td><%= city.timezone %></td>
+                    <td><%= city.weather_records.size %></td>
+                    <td><%= number_with_precision(city.latitude, precision: 4) %></td>
+                    <td><%= number_with_precision(city.longitude, precision: 4) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <p class="empty-state">No cities are available for this country.</p>
+        <% end %>
+      </section>
+    </main>
+  </body>
+</html>
