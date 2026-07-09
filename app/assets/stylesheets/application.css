@@ -172,6 +172,17 @@ h1 {
   border-bottom: 0;
 }
 
+.table-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.table-link:hover,
+.table-link:focus {
+  text-decoration: underline;
+}
+
 .detail-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

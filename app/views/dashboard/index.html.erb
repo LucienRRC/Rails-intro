@@ -10,11 +10,8 @@
     <main class="dashboard">
       <section class="dashboard__header">
         <div>
-          <p class="eyebrow">Open-Meteo Historical Weather</p>
           <h1>City Weather Explorer</h1>
-          <p class="lede">
-            Browse imported historical weather records by city, country, and daily weather measurements.
-          </p>
+
         </div>
       </section>
 
@@ -56,7 +53,7 @@
             <tbody>
               <% @cities.each do |city| %>
                 <tr>
-                  <td><%= city.name %></td>
+                  <td><%= link_to city.name, city_path(city), class: "table-link" %></td>
                   <td><%= city.country %></td>
                   <td><%= city.timezone %></td>
                   <td><%= city.weather_records.size %></td>
