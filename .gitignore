@@ -28,3 +28,6 @@
 
 # Ignore node modules if added later.
 /node_modules
+
+# Keep tests local only.
+/test
