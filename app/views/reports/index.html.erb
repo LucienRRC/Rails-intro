@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather Reports</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <main class="dashboard">
+      <section class="dashboard__header">
+        <div>
+          <p class="eyebrow">Weather Analysis</p>
+          <h1>Reports</h1>
+          <p class="lede">Summary statistics calculated from imported city weather records.</p>
+        </div>
+        <nav class="page-tabs" aria-label="Primary navigation">
+          <%= link_to "Dashboard", root_path, class: "page-tab" %>
+          <%= link_to "Countries", countries_path, class: "page-tab" %>
+          <%= link_to "Reports", reports_path, class: "page-tab page-tab--active" %>
+          <%= link_to "About", about_path, class: "page-tab" %>
+        </nav>
+      </section>
+
+      <section class="metric-grid" aria-label="Report highlights">
+        <article class="metric-card">
+          <span class="metric-card__label">Warmest Average</span>
+          <% if @warmest_city %>
+            <strong class="metric-card__compact"><%= @warmest_city.name %></strong>
+            <p class="metric-card__note"><%= number_with_precision(@warmest_city.average_temperature, precision: 1) %> C</p>
+          <% else %>
+            <strong>No data</strong>
+          <% end %>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Most Precipitation</span>
+          <% if @wettest_city %>
+            <strong class="metric-card__compact"><%= @wettest_city.name %></strong>
+            <p class="metric-card__note"><%= number_with_precision(@wettest_city.total_precipitation, precision: 1) %> mm</p>
+          <% else %>
+            <strong>No data</strong>
+          <% end %>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-card__label">Highest Wind</span>
+          <% if @windiest_city %>
+            <strong class="metric-card__compact"><%= @windiest_city.name %></strong>
+            <p class="metric-card__note"><%= number_with_precision(@windiest_city.max_wind_speed, precision: 1) %> km/h</p>
+          <% else %>
+            <strong>No data</strong>
+          <% end %>
+        </article>
+      </section>
+
+      <section class="content-panel">
+        <div class="section-heading">
+          <h2>City Summary Report</h2>
+          <p>Each row aggregates all imported weather records for that city.</p>
+        </div>
+
+        <% if @city_summaries.any? %>
+          <div class="city-table-wrap">
+            <table class="city-table">
+              <thead>
+                <tr>
+                  <th>City</th>
+                  <th>Country</th>
+                  <th>Records</th>
+                  <th>Avg Temp</th>
+                  <th>Total Precip.</th>
+                  <th>Max Wind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @city_summaries.each do |city| %>
+                  <tr>
+                    <td><%= link_to city.name, city_path(city), class: "table-link" %></td>
+                    <td><%= city.country %></td>
+                    <td><%= city.records_count %></td>
+                    <td><%= number_with_precision(city.average_temperature, precision: 1) %> C</td>
+                    <td><%= number_with_precision(city.total_precipitation, precision: 1) %> mm</td>
+                    <td><%= number_with_precision(city.max_wind_speed, precision: 1) %> km/h</td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <p class="empty-state">No weather records are available for reporting.</p>
+        <% end %>
+      </section>
+    </main>
+  </body>
+</html>

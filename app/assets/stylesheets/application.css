@@ -152,6 +152,12 @@ h1 {
   font-size: 1.35rem;
 }
 
+.metric-card__note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .content-panel {
   padding: 24px;
 }
