@@ -46,8 +46,12 @@
           <%= form.label :q, "Search cities", class: "search-form__label" %>
           <div class="search-form__controls">
             <%= form.search_field :q, value: @query, placeholder: "City or country", class: "search-form__input" %>
+            <%= form.select :country,
+                            options_for_select([["All countries", ""]] + @countries.map { |country| [country, country] }, @selected_country),
+                            {},
+                            class: "search-form__select" %>
             <%= form.submit "Search", class: "search-form__button" %>
-            <% if @query.present? %>
+            <% if @query.present? || @selected_country.present? %>
               <%= link_to "Clear", root_path, class: "search-form__clear" %>
             <% end %>
           </div>
@@ -81,7 +85,7 @@
             </table>
           </div>
         <% else %>
-          <p class="empty-state">No cities match "<%= @query %>".</p>
+          <p class="empty-state">No cities match the current search.</p>
         <% end %>
       </section>
     </main>

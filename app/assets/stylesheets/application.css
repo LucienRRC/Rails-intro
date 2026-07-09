@@ -264,7 +264,8 @@ h1 {
   align-items: center;
 }
 
-.search-form__input {
+.search-form__input,
+.search-form__select {
   width: min(360px, 100%);
   min-height: 42px;
   padding: 0 12px;
@@ -391,6 +392,7 @@ h1 {
   }
 
   .search-form__input,
+  .search-form__select,
   .search-form__button,
   .search-form__clear {
     width: 100%;
